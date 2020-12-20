@@ -480,7 +480,7 @@ sudo nano /etc/systemd/system/tomcat9.service
 Environment=MYSQL_SERVER_NAME=<your-mysql-server-name>
 Environment=MYSQL_SERVER_FULL_NAME=<your-mysql-server-name>.mysql.database.azure.com
 Environment=MYSQL_SERVER_ADMIN_LOGIN_NAME=<your-admin-name>@<your-mysql-server-name>
-Environment=MYSQL_SERVER_ADMIN_PASSWORD=<your-admin-passwor>
+Environment=MYSQL_SERVER_ADMIN_PASSWORD=<your-admin-password>
 Environment=MYSQL_DATABASE_NAME=airsonic
 Environment='CATALINA_OPTS=-Xms8192M -Xmx8192M -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Dairsonic.home=/datadrive/airsonic -DMYSQL_SERVER_FULL_NAME=${MYSQL_SERVER_FULL_NAME} -DMYSQL_DATABASE_NAME=${MYSQL_DATABASE_NAME} -DMYSQL_SERVER_ADMIN_LOGIN_NAME=${MYSQL_SERVER_ADMIN_LOGIN_NAME} -DMYSQL_SERVER_ADMIN_PASSWORD=${MYSQL_SERVER_ADMIN_PASSWORD}'
