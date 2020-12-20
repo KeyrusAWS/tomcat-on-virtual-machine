@@ -650,7 +650,9 @@ Login with airsonic application's default `admin` username and `admin` password.
 Change the admin password and configure the following:
 
 ![](./media/airsonic-setup-media-folders.jpg) 
+
 ![](./media/airsonic-setup-podcast-folder.jpg)
+
 ![](./media/airsonic-setup-admin-password.jpg)
 
 Open the `Podcasts` menu and subscribe to a few podcast feeds:
