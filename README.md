@@ -681,7 +681,7 @@ airsonic application will start downloading podcasts and may look like:
 
 Go to your New Relic dashboard and observe airsonic application performance:
 ![](./media/new-relic-airsonic-database.png)
-![](./media/new-relic-airsonic-summary.png)
+![](./media/new-relic-airsonic-summary.jpg)
 
 ## Contributing
 
