@@ -1,3 +1,113 @@
+# Migration of Java Tomcat Application to AWS EKS using Terraform
+
+This guide covers the steps necessary to migrate a Java Tomcat application running in a virtual machine to AWS Elastic Container Service for Kubernetes (EKS) using Terraform. This guide assumes that you have a basic understanding of AWS, Kubernetes, and Terraform.
+
+## Prerequisites
+
+- A Java Tomcat application running in a virtual machine with access to the application code and required dependencies.
+- An AWS account with the necessary permissions to create EKS clusters, EC2 instances, and other AWS resources.
+- Terraform installed and configured on the virtual machine.
+- AWS CLI installed and configured on the virtual machine.
+- kubectl installed and configured on the virtual machine.
+- Docker installed and configured on the virtual machine.
+
+## Steps
+
+1. Clone the Terraform Infrastructure Repository
+2. Dockerize the Java Tomcat Application
+3. Initialize and Apply the Terraform Code
+4. Connect to the EKS Cluster
+5. Deploy the Docker Image to the EKS Cluster
+6. Expose the Deployment as a Service
+7. Test the Application
+
+## Step 1: Clone the Terraform Infrastructure Repository
+
+Connect to the virtual machine where the Java Tomcat application is running. 
+Clone the Terraform infrastructure repository using the following command:
+
+```bash
+git clone [REPO_URL]
+```
+Replace [REPO_URL] with the URL of the Terraform infrastructure repository
+
+
+## Step 2: Dockerize the Java Tomcat Application
+The first step in migrating the application is to containerize it using Docker. This will make it easier to deploy and manage in AWS EKS.
+
+Navigate to the directory where the application code is located.
+Create a Dockerfile with the following contents:
+
+```Dockerfile
+FROM tomcat:8-jre8
+COPY [YOUR_APPLICATION_WAR_FILE] /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+```
+
+Replace [YOUR_APPLICATION_WAR_FILE] with the name of the WAR file for your Java Tomcat application.
+Build the Docker image using the following command:
+```
+docker build -t [IMAGE_NAME] .
+```
+Replace [IMAGE_NAME] with a name for the Docker image.
+Push the Docker image to a Docker registry, such as Docker Hub or Amazon Elastic Container Registry (ECR).
+
+## Step 3: Initialize and Apply the Terraform Code
+In this step, you will use Terraform to create the EKS cluster in AWS.
+
+Navigate to the infra-eks/dev directory within the cloned Terraform infrastructure repository.
+Initialize Terraform using the following command:
+```
+terraform init
+```
+Apply the Terraform code using the following command:
+```
+terraform apply
+```
+Answer the prompts to confirm the creation of the resources.
+Wait for Terraform to complete the creation of the resources. This can take several minutes.
+
+## Step 4: Connect to the EKS Cluster
+In this step, you will connect to the EKS cluster created in step 3.
+
+Run the following command to update the kubectl configuration:
+```
+aws eks update-kubeconfig --name [CLUSTER_NAME]
+```
+Replace [CLUSTER_NAME] with the name of the EKS cluster
+Step 5: Deploy the Docker Image to the EKS Cluster
+In this step, you will deploy the Docker image to the EKS cluster.
+
+Create a Kubernetes deployment using the following command:
+```
+kubectl create deployment [DEPLOYMENT_NAME] --image=[IMAGE_NAME]
+```
+Replace [DEPLOYMENT_NAME] with a name for the Kubernetes deployment.
+Replace [IMAGE_NAME] with the name of the Docker image.
+
+## Step 6: Expose the Deployment as a Service
+In this step, you will expose the deployment as a service, making it accessible from the internet.
+
+Create a Kubernetes service using the following command:
+```
+kubectl expose deployment [DEPLOYMENT_NAME] --type=LoadBalancer --port=8080 --target-port=8080
+```
+Replace [DEPLOYMENT_NAME] with the name of the deployment created in step 5.
+
+## Step 7: Test the Application
+In this step, you will test the application to ensure it is working as expected.
+
+Run the following command to get the public endpoint for the service:
+```
+kubectl get services
+```
+Access the application using a web browser using the public endpoint.
+Verify that the application is working as expected.
+
+
+# Working in progress changing to AWS VM
+
 ---
 page_type: sample
 languages:
